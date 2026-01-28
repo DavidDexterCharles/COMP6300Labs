@@ -1,184 +1,231 @@
-# Git Basic Steps
+# Python Local App Setup (with `main.py`)
 
-Git is a distributed version control system for tracking changes in source code. It lets multiple people collaborate, keep a history of edits, branch and merge work, and sync changes with remote repositories (for example, GitHub).
+This document is a quick-start guide for setting up a small Python application locally using a `main.py` file and a virtual environment. It follows a similar numbered, step-by-step style to the Git guide.
 
-This document is a quick-start guide that aims to get you using Git confidently at a functional level. Git is a large topic with many workflows and commands for different scenarios, so you should expect to look up extra details as new situations arise—that is normal and encouraged.
+We will cover:
 
-## 1. First: Create the repository
+- Creating a virtual environment (`venv`)
+- Activating and deactivating the virtual environment
+- Installing libraries (for example, **NumPy** and **Matplotlib**)
+- Creating a `requirements.txt` file
+- Recreating the same environment on another machine or directory
 
-Create the repository on your Git hosting platform (for example, GitHub), giving it a clear and meaningful name. Decide whether it should be **public** or **private**, and choose to include a `README` if appropriate.
+---
 
-For the type of project you are creating, select a suitable `.gitignore`. A simple rule of thumb is to pick the `.gitignore` template that matches your main programming language or framework (for example, for a Node.js project, choose the Node template).
+## 1. First: Create a project folder and `main.py`
 
-## 2. Second: Clone the project
+1. Create a new folder for your project (for example, `MyPythonApp`).
+2. Inside that folder, create a file named `main.py`.
 
-After you have created your remote repository, clone it to your local machine using:
+Example minimal `main.py`:
 
-```bash
-git clone https://github.com/example-user/example-repo.git
+```python
+def main():
+    print("Hello from main.py!")
+
+
+if __name__ == "__main__":
+    main()
 ```
 
-Your command will use **your** repository URL, but the pattern is the same.
-
-## 3. Third: Add (stage) changes
-
-When you clone a project, you create a full local repository on your machine. When you make changes, you can add those changes to the **staging area**.
-
-Note: for each local Git repository there is only **one** staging area. When you run `git add`, it updates what is currently staged (it does not create multiple separate staging areas).
-
-To stage all changes, you can run:
+You will run this later with:
 
 ```bash
-git add --all
+python main.py
 ```
 
-There are many variations of `git add` that let you stage specific files or even parts of files. Students are encouraged to explore those options. In practice, `git add --all` is a simple command that reliably captures all changes and reduces the risk of accidentally missing files.
+_(On some systems you may use `python3` instead of `python`.)_
 
-## 4. Fourth: Commit changes
+---
 
-If you are adding a new feature or making edits and you want to keep a record without losing what is already staged, the next step is to **commit**. Commits act like checkpoints in your project history.
+## 2. Second: Create a virtual environment (`venv`)
 
-When you commit, Git stores a snapshot of everything currently staged, along with a commit message that describes the change (this is a simplified explanation, but it is a useful mental model).
+A **virtual environment** keeps your project’s Python packages isolated from the rest of your system, so different projects can use different versions of libraries without conflicts.
 
-After the changes have been committed, the staging area is free for new work.
-
-To commit staged changes:
+From inside your project folder, run:
 
 ```bash
-git commit -m "Added two new endpoints (example commit message)"
+python -m venv venv
 ```
 
-Write clear, concise commit messages that explain the “why” and “what” of the change.
+This creates a new folder called `venv` that contains an isolated Python environment.
 
-## 5. Fifth: Push changes
-
-Only committed changes can be pushed to a remote branch—that is, uploaded from your local repository to the remote repository.
-
-To push your local commits to the remote branch:
+If your system uses `python3` instead, you would run:
 
 ```bash
-git push
+python3 -m venv venv
 ```
 
-In practice, the usual flow is:
+---
 
-1. Stage your changes (`git add`).
-2. Commit your changes (`git commit`).
-3. Push your changes (`git push`).
+## 3. Third: Activate and deactivate the virtual environment
 
-The idea of “branches” is explained in the next section.
+You should **activate** the virtual environment before installing packages or running your app, so everything is installed into `venv`.
 
-## 6. Sixth: Create branches
+### 3.1 Activate on Windows
 
-Often you will want to work on a separate copy of the main codebase. A common reason is to avoid touching production-ready code directly and risking breaking it. Branching provides a safe and standard way to do this.
-
-There are many branching strategies in industry (for example, Git Flow, trunk-based development) that describe when to branch, how to name branches, and so on. These can be explored separately. Here we focus on the basic commands.
-
-To create and switch to a new branch:
-
-```bash
-git checkout -b my-new-branch
-```
-
-This creates a new branch **locally**. On this branch, you can make changes, commit, and push as usual. When you push this branch for the first time, Git may suggest a command like:
-
-```bash
-git push --set-upstream origin my-new-branch
-```
-
-This is telling you that the branch does not exist on the remote yet, and you need to create and link it. After you run that once, you can normally use `git push` without extra options for future pushes on that branch.
-
-## 7. Seventh: Switch between branches
-
-To switch between branches, use:
-
-```bash
-git switch name-of-branch
-```
-
-For example:
-
-```bash
-git switch my-new-branch
-git switch main
-```
-
-Some older repositories might use `master` instead of `main` as the default branch name. In those cases you may use:
-
-```bash
-git switch master
-```
-
-## 8. Eighth: Merge branches
-
-After finishing work on a feature branch, you often want to merge those changes into another branch (for example, `main`). A typical flow is:
-
-1. Switch to the branch you want to merge **into** (for example, `main`).
-2. Make sure it is up to date and in a stable state.
-3. Merge the feature branch.
-
-Commands:
-
-```bash
-git switch main
-git status     # check for local changes that may need to be committed or cleaned up
-git pull       # bring in any remote changes
-```
-
-This `git status` + `git pull` combination is a practical way to reduce the chance of merge conflicts (although it does not guarantee avoiding them). Students are encouraged to read more about **merge conflicts** and strategies for resolving them.
-
-Once `main` is in a good state, you can merge your branch:
-
-```bash
-git merge my-new-branch
-```
-
-## 9. Ninth: Pull changes and collaborate
-
-As mentioned earlier, you can pull changes that were made on the remote branch—either by you from another machine or by collaborators.
-
-To pull changes from the remote into your current local branch:
-
-```bash
-git pull
-```
-
-This keeps your local copy in sync with the remote repository and is essential when working in a team.
-
-## 10. Tenth: Clean up old branches (local and remote)
-
-Over time, branches can accumulate. Cleaning them up can be useful, but **deleting branches should be done cautiously**. You may want to research backup strategies or protections (for example, protecting the `main` branch).
-
-Some commonly used commands:
-
-- Local (safe delete, only if branch is fully merged):
+- **PowerShell**:
 
   ```bash
-  git branch -d <branch-name>
+  .\venv\Scripts\Activate.ps1
   ```
 
-- Local force delete (discard unmerged work):
+- **Command Prompt (cmd.exe)**:
 
   ```bash
-  git branch -D <branch-name>
+  venv\Scripts\activate
   ```
 
-- If you are currently **on** the branch, switch first:
+You should see something like `(venv)` appear at the start of your terminal prompt, indicating that the virtual environment is active.
 
-  ```bash
-  git switch main
-  ```
+### 3.2 Activate on macOS / Linux
 
-- Delete a remote branch:
+```bash
+source venv/bin/activate
+```
 
-  ```bash
-  git push origin --delete <branch-name>
-  ```
+Again, you should see `(venv)` at the beginning of your prompt.
 
-- Alternate remote delete syntax:
+### 3.3 Deactivate the virtual environment (all platforms)
 
-  ```bash
-  git push origin :<branch-name>
-  ```
+To deactivate (go back to the system Python), simply run:
 
-In many real projects, it is normal to have many branches (sometimes dozens). Branches are not always deleted immediately; it depends on the team’s workflow and policies. Always double-check before deleting, especially on shared or production-related branches.
+```bash
+deactivate
+```
+
+After this, the `(venv)` prefix will disappear from your prompt.
+
+---
+
+## 4. Fourth: Install libraries (NumPy, Matplotlib, etc.)
+
+With the virtual environment **activated**, you can install libraries using `pip`.
+
+For example, to install **NumPy** and **Matplotlib**:
+
+```bash
+pip install numpy matplotlib
+```
+
+Once installed, you can import and use them in `main.py`. Example:
+
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+def main():
+    # Simple NumPy example
+    x = np.linspace(0, 10, 100)
+    y = np.sin(x)
+
+    # Simple Matplotlib example
+    plt.plot(x, y)
+    plt.title("Sine Wave Example")
+    plt.xlabel("x")
+    plt.ylabel("sin(x)")
+    plt.show()
+
+
+if __name__ == "__main__":
+    main()
+```
+
+Run your app (with `venv` active):
+
+```bash
+python main.py
+```
+
+---
+
+## 5. Fifth: Create a `requirements.txt` file
+
+The `requirements.txt` file lists the packages your project depends on, usually with version numbers. This is extremely useful when:
+
+- You move the project to another machine.
+- A teammate wants to set up the project.
+- You want a consistent, repeatable environment.
+
+With your virtual environment still **activated**, run:
+
+```bash
+pip freeze > requirements.txt
+```
+
+This creates a `requirements.txt` file in your project folder containing lines like:
+
+```text
+matplotlib==<some-version>
+numpy==<some-version>
+```
+
+(There will usually be more packages listed, depending on your environment.)
+
+You should commit `requirements.txt` to your Git repository so others can use it.
+
+---
+
+## 6. Sixth: Recreate the environment from `requirements.txt` (new machine or new directory)
+
+If you **clone** the same project into another folder or on another machine, you will typically see:
+
+- The source files (including `main.py`)
+- The `requirements.txt` file
+- But **no** `venv` folder yet (it should not be committed to Git)
+
+To set everything up again:
+
+1. **Clone the repository** (or copy the project folder).
+2. **Create a new virtual environment** in the cloned folder.
+3. **Activate** the virtual environment.
+4. **Install dependencies from `requirements.txt`**.
+
+Example sequence (inside the newly cloned project folder):
+
+```bash
+python -m venv venv
+```
+
+Activate it (Windows PowerShell example):
+
+```bash
+.\venv\Scripts\Activate.ps1
+```
+
+Then install all required packages:
+
+```bash
+pip install -r requirements.txt
+```
+
+This reads all the listed dependencies and installs matching versions into your new `venv`, recreating the same environment as the original project (as closely as possible).
+
+You can now run:
+
+```bash
+python main.py
+```
+
+and expect the application to behave the same way on this new machine or in this new directory.
+
+---
+
+## 7. Seventh: Summary of the basic workflow
+
+1. **Create project folder and `main.py`.**
+2. **Create a virtual environment**: `python -m venv venv`.
+3. **Activate the environment**:
+   - Windows PowerShell: `.\venv\Scripts\Activate.ps1`
+   - Windows cmd: `venv\Scripts\activate`
+   - macOS/Linux: `source venv/bin/activate`
+4. **Install packages** with `pip install ...` (for example, `pip install numpy matplotlib`).
+5. **Run your app**: `python main.py`.
+6. **Generate `requirements.txt`**: `pip freeze > requirements.txt`.
+7. **On another machine or folder**:
+   - Create a new `venv` (`python -m venv venv`),
+   - Activate it,
+   - Then run `pip install -r requirements.txt`.
+
+Following this pattern will give you a clean, repeatable setup process for small Python applications using `main.py` and virtual environments.
