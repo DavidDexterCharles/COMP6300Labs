@@ -28,7 +28,7 @@ if __name__ == "__main__":
     main()
 ```
 
-You will run this later with:
+Run this once python is installed on your system:
 
 ```bash
 python main.py
@@ -108,7 +108,7 @@ For example, to install **NumPy** and **Matplotlib**:
 pip install numpy matplotlib
 ```
 
-Once installed, you can import and use them in `main.py`. Example:
+Once installed, you can import and use them in `main2.py`. Example:
 
 ```python
 import numpy as np
@@ -135,7 +135,7 @@ if __name__ == "__main__":
 Run your app (with `venv` active):
 
 ```bash
-python main.py
+python main2.py
 ```
 
 ---
