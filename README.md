@@ -229,3 +229,19 @@ and expect the application to behave the same way on this new machine or in this
    - Then run `pip install -r requirements.txt`.
 
 Following this pattern will give you a clean, repeatable setup process for small Python applications using `main.py` and virtual environments.
+
+---
+
+## 8. Eighth: Exclude `venv` from Git commits
+
+You normally **do not want** to commit your virtual environment folder (`venv`) to Git, because it can be large and is easy to recreate from `requirements.txt`.
+
+To tell Git to ignore `venv` (and `.venv` if you use that name), add the following lines to your `.gitignore` file in the root of your project:
+
+```gitignore
+# Python virtual environments
+venv/
+.venv/
+```
+
+After this, Git will stop tracking those folders, and they will not be included in future commits or pushes.
