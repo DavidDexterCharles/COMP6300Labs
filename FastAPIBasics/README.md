@@ -128,7 +128,7 @@ pip list
 Assuming your app is in `main.py` and the FastAPI instance is called `app` (as in the earlier example), you can start the server with:
 
 ```bash
-uvicorn main:app --reload --host 0.0.0.0 --port 8000
+uvicorn main:app --reload --host 127.0.0.1 --port 8000
 ```
 
 Explanation:
@@ -136,7 +136,7 @@ Explanation:
 - `main` refers to the filename `main.py` (without the `.py`).
 - `app` is the FastAPI instance inside that file.
 - `--reload` automatically restarts the server when you save code changes (useful in development).
-- `--host 0.0.0.0` listens on all available network interfaces (optional; for local development you can omit it).
+- `--host 127.0.0.1` binds to localhost (the same as `http://127.0.0.1` or `http://localhost`).
 - `--port 8000` sets the port; by default Uvicorn uses `8000`.
 
 Once the server is running, you should see log output in the terminal, and you can open:
