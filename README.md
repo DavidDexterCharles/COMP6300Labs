@@ -35,7 +35,7 @@ seventh switching between branches
 to switch between branches you use the following command:
 "git switch nameofbranch" referencing or previous example "git switch mynewbranch" or "git switch main" if you wish to return to your main branch. note "git switch master" may be used if your default(main) branch name was called master instead of main on initial creation.
 
-seventh merging branches
+eight merging branches
 after one has made changes to a local branch that they were experimenting with they can then proceed to merge the changes into their branch of choice. they do this by first switching to the branch of choice useing the git switch command and then they would use the "git merge mynewbranch".
 example to merge the changes from mynewbranch into main the steps are as follows
 "git switch main"
