@@ -1,2 +1,2 @@
-# COMP6300Labs
+# Labs
 COMP6300 Labs
