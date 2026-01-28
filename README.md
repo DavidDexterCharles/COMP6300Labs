@@ -33,7 +33,14 @@ this is just saying that your branch that your trying to push to does not exist 
 
 seventh switching between branches
 to switch between branches you use the following command:
-git switch
+"git switch nameofbranch" referencing or previous example "git switch mynewbranch" or "git switch main" if you wish to return to your main branch. note "git switch master" may be used if your default(main) branch name was called master instead of main on initial creation.
 
 seventh merging branches
-after one has made changes to a local branch then
+after one has made changes to a local branch that they were experimenting with they can then proceed to merge the changes into their branch of choice. they do this by first switching to the branch of choice useing the git switch command and then they would use the "git merge mynewbranch".
+example to merge the changes from mynewbranch into main the steps are as follows
+"git switch main"
+"git status" this is to check if there are local changes in main that needs to be either commited or pushed.
+"git pull" this is to pull any remote changes that may have been made.
+git status and git pull combo is one of the mehtods I use for minimizing something know as merge conflicts. The user is encoraged to do research on their own to see what merge conflicts are and how to resolve.
+after the quick verification that the main branch is in a stable state to be merged into the user can now type the command:
+git merger mynewbranch
