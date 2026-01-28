@@ -43,4 +43,4 @@ example to merge the changes from mynewbranch into main the steps are as follows
 "git pull" this is to pull any remote changes that may have been made.
 git status and git pull combo is one of the mehtods I use for minimizing something know as merge conflicts. The user is encoraged to do research on their own to see what merge conflicts are and how to resolve.
 after the quick verification that the main branch is in a stable state to be merged into the user can now type the command:
-git merger mynewbranch
+git merge mynewbranch
