@@ -15,7 +15,7 @@ For the type of project you are creating, select a suitable `.gitignore`. A simp
 After you have created your remote repository, clone it to your local machine using:
 
 ```bash
-git clone https://github.com/DavidDexterCharles/COMP6300Labs.git
+git clone https://github.com/example-user/example-repo.git
 ```
 
 Your command will use **your** repository URL, but the pattern is the same.
