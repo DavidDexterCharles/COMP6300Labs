@@ -1,5 +1,7 @@
 # GIT Basic Steps
 
+Git is a distributed version control system for tracking changes in source code. It lets multiple people collaborate, keep a history of edits, branch and merge work, and sync changes with remote repositories (e.g., GitHub). This is a guide into some of the basics of git that i think is a good quick start guide for effectively using git at a functional capacity. The uses/readers should keep in mind git is vast and there are various strategies and commands that can be implemented and executed for various multitudes of use case scenarios. Hence users should know that exploring for additional information when issues arise is expected and natural.
+
 first create repo, giving repo a suitable name ensure to specify whether its public or private and also include readme, for the type of project you are going to create you would include the respective git ignore. Basic strategy is to slect the git ignore for the project based on the main programing language being used example, for node project use node git ignore.
 
 second cloning project
@@ -44,3 +46,20 @@ example to merge the changes from mynewbranch into main the steps are as follows
 git status and git pull combo is one of the mehtods I use for minimizing something know as merge conflicts. The user is encoraged to do research on their own to see what merge conflicts are and how to resolve.
 after the quick verification that the main branch is in a stable state to be merged into the user can now type the command:
 git merge mynewbranch
+
+ninth pulling changes and collaboration
+introduced earlier a user can pull changes which may have been made to a remote branch by them from another machine or may have been made by another collaborator on the repo/project. the git pull command is meant to pull changes to local branches.
+
+tenth cleaning up old repos local and remote
+Below is how you may go about cleaning up repositories, but delete branches should be done extremely cautiosly, users can lookinto how backing up branches may be possible
+Local (safe):
+git branch -d <branch-name>
+Local force delete (discard unmerged work):
+git branch -D <branch-name>
+If you're on the branch, switch first:
+git switch main
+Delete remote branch:
+git push origin --delete <branch-name>
+Or alternate remote syntax:
+git push origin :<branch-name>
+users should be very careful when deleteing branches, and in most cases braches arent typicaly deleted unless really neccesarry, sometimes having 50 branches is till normal and managable
