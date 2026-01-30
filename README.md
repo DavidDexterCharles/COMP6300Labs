@@ -245,3 +245,16 @@ venv/
 ```
 
 After this, Git will stop tracking those folders, and they will not be included in future commits or pushes.
+
+
+
+# VScode Config
+
+How to Set Command Prompt as default in vscode:
+
+VS Code
+(rerun without)
+Open Settings (File > Preferences > Settings or press Ctrl+,).
+Search for "Default Profile Windows" (Terminal > Integrated: Default Profile: Windows) and select "Command Prompt".
+If "Command Prompt" is not available, open your settings.json and add a Command Prompt profile, then set it as the default. After saving, open a new integrated terminal (View > Terminal or Ctrl+`).
+
